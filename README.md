@@ -1,1 +1,1 @@
-# ODIN Webpack Template
+# Webpack Template Repository
