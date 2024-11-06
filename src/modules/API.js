@@ -9,6 +9,9 @@ export const api = (() => {
     include: "current",
   };
 
+  const getUnitGroup = () => params.unitGroup;
+  const setUnitGroup = (unitGroup) => (params.unitGroup = unitGroup);
+
   const getWeatherData = async (location) => {
     const url = `${baseURL}${location}?${new URLSearchParams(params)}`;
 
@@ -17,10 +20,10 @@ export const api = (() => {
       const data = await response.json();
       return data;
     } catch (error) {
-      ui.renderError('Enter a valid location');
+      ui.renderError("Enter a valid location");
       return null;
     }
   };
 
-  return { getWeatherData };
+  return { getUnitGroup, setUnitGroup, getWeatherData };
 })();

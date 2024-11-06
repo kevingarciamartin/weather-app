@@ -1,3 +1,5 @@
+import { api } from "./API";
+
 export const ui = (() => {
   const render = (data) => {
     renderLocationInput();
@@ -39,9 +41,11 @@ export const ui = (() => {
   const renderTemperature = (data) => {
     const temperatureContainer = document.querySelector("#temperature");
     if (data) {
+      const unitGroup = api.getUnitGroup();
+      const unit = unitGroup === "metric" ? "°C" : "°F";
       temperatureContainer.innerHTML = `
-        <h2>${data.currentConditions.temp}°C</h2>
-        <p>Feels like: ${data.currentConditions.feelslike}°C</p>
+        <h2>${data.currentConditions.temp}${unit}</h2>
+        <p>Feels like: ${data.currentConditions.feelslike}${unit}</p>
       `;
     }
   };
@@ -55,14 +59,37 @@ export const ui = (() => {
     }
   };
 
-  const getLocationInputField = () => {
-    return document.querySelector("#location-input");
-  };
-
   const renderError = (message) => {
     const error = document.querySelector("#error-message");
     error.textContent = message;
   };
 
-  return { render, renderLocationInput, getLocationInputField, renderError };
+  const getLocationInputField = () => {
+    return document.querySelector("#location-input");
+  };
+
+  const getUnitButtons = () => {
+    return document.querySelectorAll(".unit-btn");
+  };
+
+  const getActiveUnitButton = () => {
+    const activeButton = document.getElementsByClassName("unit-btn active");
+    return activeButton[0];
+  };
+
+  const handleUnitButtons = (button) => {
+    const activeUnitButton = getActiveUnitButton();
+    activeUnitButton.classList.remove("active");
+    button.classList.add("active");
+  };
+
+  return {
+    render,
+    renderLocationInput,
+    renderError,
+    getLocationInputField,
+    getUnitButtons,
+    getActiveUnitButton,
+    handleUnitButtons,
+  };
 })();
