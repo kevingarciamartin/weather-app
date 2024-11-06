@@ -1,10 +1,11 @@
 import { api } from "./API";
+import { ui } from "./UI";
 
 export const controller = (() => {
-  async function getCurrentConditions(location) {
+  const handleLocationInput = async (location) => {
     const data = await api.getWeatherData(location);
-    // console.log(data);
-  }
+    if (data !== null) ui.render(data);
+  };
 
-  return { getCurrentConditions };
+  return { handleLocationInput };
 })();

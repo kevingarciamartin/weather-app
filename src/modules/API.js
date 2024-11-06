@@ -1,3 +1,5 @@
+import { ui } from "./UI";
+
 export const api = (() => {
   const baseURL =
     "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";
@@ -7,13 +9,18 @@ export const api = (() => {
     include: "current",
   };
 
-  async function getWeatherData(location) {
+  const getWeatherData = async (location) => {
     const url = `${baseURL}${location}?${new URLSearchParams(params)}`;
-    const response = await fetch(url);
-    const data = await response.json();
 
-    return data;
-  }
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      ui.renderError('Enter a valid location');
+      return null;
+    }
+  };
 
   return { getWeatherData };
 })();
