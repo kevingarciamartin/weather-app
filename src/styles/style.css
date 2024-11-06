@@ -1,39 +1,64 @@
 header {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  align-items: center;
+  column-gap: 2rem;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr auto;
   padding: 1rem 0;
 
+  form {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    grid-template-rows: subgrid;
+    justify-self: end;
+    grid-row: 1 / -1;
+
+    width: min(20rem, 80%);
+  }
+
   fieldset {
-    display: flex;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 2rem 1fr;
+    grid-column: 1 / -1;
 
     border: 1px solid black;
     border-radius: 1rem;
     overflow: clip;
     padding: 0;
-    width: fit-content;
+    width: 100%;
 
     &:focus-within {
       outline: 2px solid black;
     }
 
     svg {
-      padding-inline: 0.5rem 0.25rem;
-      width: 2rem;
+      grid-column: 1;
+      padding-inline: 0.5rem 0;
+      width: 1.5rem;
     }
 
     input {
+      justify-self: start;
+      grid-column: 2;
       font-size: 1.25rem;
       border: none;
       border-radius: 0 0.9rem 0.9rem 0;
       outline: none;
-      padding: 0.25rem 0.5rem;
+      padding: 0.25rem 0;
+      width: 100%;
     }
   }
 
   #error-message {
+    grid-column: 2;
     color: red;
     height: 1em;
-    text-align: center;
+    padding-inline: 0.24rem 0;
+  }
+
+  .button-container {
+    justify-self: start;
   }
 }
 
