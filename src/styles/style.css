@@ -7,9 +7,9 @@ header {
   display: grid;
   align-items: center;
   column-gap: 2rem;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 3fr 2fr;
   grid-template-rows: 1fr auto;
-  padding: 1rem 0;
+  padding: 3rem 0;
 
   form {
     display: grid;
@@ -35,10 +35,15 @@ header {
 
     &:focus-within {
       outline: 1px solid black;
+
+      svg {
+        fill: black;
+      }
     }
 
     svg {
       grid-column: 1;
+      fill: hsl(0 0 50%);
       padding-inline: 0.5rem 0;
       width: 1.75rem;
     }
@@ -85,5 +90,13 @@ header {
 }
 
 main {
-  margin: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
