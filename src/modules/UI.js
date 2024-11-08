@@ -168,8 +168,6 @@ export const ui = (() => {
   };
 
   const renderError = (message) => {
-    if (!message) return;
-
     const error = document.querySelector("#error-message");
     error.textContent = message;
   };
