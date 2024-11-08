@@ -86,13 +86,6 @@ export const ui = (() => {
     `;
   };
 
-  const renderError = (message) => {
-    if (!message) return;
-
-    const error = document.querySelector("#error-message");
-    error.textContent = message;
-  };
-
   const renderIcon = (data) => {
     if (!data) return;
 
@@ -174,6 +167,13 @@ export const ui = (() => {
     icon.appendChild(image);
   };
 
+  const renderError = (message) => {
+    if (!message) return;
+
+    const error = document.querySelector("#error-message");
+    error.textContent = message;
+  };
+
   const getLocationInputField = () => {
     return document.querySelector("#location-input");
   };
@@ -201,6 +201,5 @@ export const ui = (() => {
     getUnitButtons,
     getActiveUnitButton,
     handleUnitButtons,
-    renderIcon,
   };
 })();
